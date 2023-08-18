@@ -1,13 +1,22 @@
 import React from "react";
 import { useState } from "react";
+import Values from "values.js";
 
-export const Form = () => {
-  const [color, setColor] = useState("#99f924");
+export const Form = ({ setCurrentColor }) => {
+  const [color, setColor] = useState("");
 
   function HandleSubmit(e) {
     e.preventDefault();
-    console.log("Hello world");
+    let gradientColor = new Values(color).all(10);
+    setCurrentColor(gradientColor);
   }
+
+  const buttonStyle = {
+    background: `${color}`,
+    borderRadius: "10px",
+    fontSize: "12px",
+    fontWeight: "bold",
+  };
 
   return (
     <form className="color-form" onSubmit={(e) => HandleSubmit(e)}>
@@ -15,15 +24,11 @@ export const Form = () => {
       <input type="color" onChange={(e) => setColor(e.target.value)} />
       <input
         type="text"
-        value=""
+        value={color}
         onChange={(e) => setColor(e.target.value)}
-        placeholder={color}
+        placeholder="#80B192"
       />
-      <button
-        type="submit"
-        className="btn"
-        style={{ background: "black", borderRadius: "10px", fontSize: "12px" }}
-      >
+      <button type="submit" className="btn" style={buttonStyle}>
         Submit
       </button>
     </form>

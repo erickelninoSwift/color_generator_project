@@ -1,5 +1,5 @@
 import React from "react";
 
-export const SingleColor = () => {
-  return <div>SingleColor</div>;
+export const SingleColor = ({ colors }) => {
+  return <div>{colors}</div>;
 };
