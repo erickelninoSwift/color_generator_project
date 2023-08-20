@@ -2,13 +2,14 @@ import React from "react";
 import { useState } from "react";
 import Values from "values.js";
 
-export const Form = ({ setCurrentColor }) => {
+export const Form = ({ setCurrentColor, colorTost }) => {
   const [color, setColor] = useState("");
 
   function HandleSubmit(e) {
     e.preventDefault();
     let gradientColor = new Values(color).all(10);
     setCurrentColor(gradientColor);
+    colorTost.success("Color was succesfully picked");
   }
 
   const buttonStyle = {
