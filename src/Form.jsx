@@ -7,9 +7,14 @@ export const Form = ({ setCurrentColor, colorTost }) => {
 
   function HandleSubmit(e) {
     e.preventDefault();
-    let gradientColor = new Values(color).all(10);
-    setCurrentColor(gradientColor);
-    colorTost.success("Color was succesfully picked");
+    try {
+      let gradientColor = new Values(color).all(10);
+      setCurrentColor(gradientColor);
+      colorTost.success("Color was succesfully picked");
+    } catch (error) {
+      console.log(`Error Found : ${error}`);
+      colorTost.error(error.message);
+    }
   }
 
   const buttonStyle = {
